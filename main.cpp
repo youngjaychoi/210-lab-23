@@ -50,7 +50,7 @@ int main_menu() {
 int select_goat(list<Goat> trip) {
     if (trip.empty()) {
         cout << "Nothing selected" << endl;
-        return;
+        return -1;
     }
 
     int num = 1;
@@ -63,6 +63,12 @@ int select_goat(list<Goat> trip) {
 
     int choice;
     cin >> choice;
+
+    if (choice < 1 || choice > trip.size()) {
+        return -1;
+    }
+    
+    return choice;
 }
 
 void delete_goat(list<Goat> &trip) {
