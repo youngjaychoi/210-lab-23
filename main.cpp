@@ -15,7 +15,6 @@ int main_menu();
 
 int main() {
     srand(time(0));
-    bool again;
 
     // read & populate arrays for names and colors
     string names[SZ_NAMES];
@@ -90,10 +89,11 @@ int select_goat(list<Goat> &trip) {
     }
 
     int choice;
+    cout << "Enter the number of the goat: ";
     cin >> choice;
     cout << endl;
 
-    if (choice == -1 || choice > static_cast<int>(trip.size())) {
+    if (choice < 1 || choice > static_cast<int>(trip.size())) {
         return -1;
     }
 
@@ -140,5 +140,6 @@ void display_trip(list<Goat> &trip) {
     for (const auto &goat : trip) {
         cout << "[" << num << "] " << goat.get_name() << " ("
             << goat.get_age() << ", " << goat.get_color() << ")" << endl;
+        num++;
     }
 }
