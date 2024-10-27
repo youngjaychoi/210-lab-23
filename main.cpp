@@ -18,15 +18,21 @@ int main() {
     bool again;
 
     // read & populate arrays for names and colors
-    ifstream fin("names.txt");
     string names[SZ_NAMES];
-    int i = 0;
-    while (fin >> names[i++]);
-    fin.close();
-    ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
+
+    ifstream fin("C:/Users/young/OneDrive/CS/vs/cs210/lab23/210-lab-23/names.txt");
+    int i = 0;
+    while (fin >> names[i++] && i < SZ_NAMES) {
+        i++;
+    }
+    fin.close();
+
+    ifstream fin1("C:/Users/young/OneDrive/CS/vs/cs210/lab23/210-lab-23/colors.txt");
     i = 0;
-    while (fin1 >> colors[i++]);
+    while (fin1 >> colors[i++] && i < SZ_COLORS) {
+        i++;
+    }
     fin1.close();
 
 
@@ -67,12 +73,26 @@ int select_goat(list<Goat> trip) {
     if (choice < 1 || choice > trip.size()) {
         return -1;
     }
-    
+
     return choice;
 }
 
 void delete_goat(list<Goat> &trip) {
+    if (trip.empty()) {
+        cout << "Empty goats" << endl;
+        return;
+    }
 
+    int index = select_goat(trip);
+    if (index < 0) {
+        cout << "Invalid index" << endl;
+        return;
+    }
+
+    auto it = trip.begin();
+    advance(it, index - 1);
+    cout << "Deleted: " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
+    trip.erase(it);
 }
 
 void add_goat(list<Goat> &trip, string names[], string colors[]) {
