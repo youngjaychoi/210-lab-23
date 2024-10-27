@@ -13,6 +13,7 @@ private:
 public: 
     Goat()                          { name = ""; age = 0; color = ""; }
     // write three more constructors
+    Goat(string &name)
 
     // setters and getters
     void set_name(string n)         { name = n; };
