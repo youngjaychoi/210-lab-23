@@ -21,28 +21,49 @@ int main() {
     string names[SZ_NAMES];
     string colors[SZ_COLORS];
 
-    ifstream fin("C:/Users/young/OneDrive/CS/vs/cs210/lab23/210-lab-23/names.txt");
+    ifstream fin("names.txt");
     int i = 0;
     while (fin >> names[i++] && i < SZ_NAMES) {
         i++;
     }
     fin.close();
 
-    ifstream fin1("C:/Users/young/OneDrive/CS/vs/cs210/lab23/210-lab-23/colors.txt");
+    ifstream fin1("colors.txt");
     i = 0;
     while (fin1 >> colors[i++] && i < SZ_COLORS) {
         i++;
     }
     fin1.close();
 
+    list<Goat> trip;
 
+    int choice = 0;
+    do {
+       choice = main_menu();
 
-
+       switch (choice) {
+       case 1:
+            add_goat(trip, names, colors);
+            break;
+       case 2:
+            delete_goat(trip);
+            break;
+        case 3:
+            display_trip(trip);
+            break;
+        case 4:
+            cout << "Exiting..." << endl;
+            break;
+        default:
+            cout << "Invalid choice!" << endl;        
+       } 
+    } while (choice != 4);
+    
     return 0;
 }
 
 int main_menu() {
-    char choice;
+    int choice;
     cout << "*** GOAT MANAGER 3001 ***" << endl;
     cout << "[1] Add a goat" << endl;
     cout << "[2] Delete a goat" << endl;
