@@ -7,10 +7,10 @@ using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
-int select_goat(list<Goat> trip);
+int select_goat(list<Goat> &trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
-void display_trip(list<Goat> trip);
+void display_trip(list<Goat> &trip);
 int main_menu();
 
 int main() {
@@ -71,10 +71,11 @@ int main_menu() {
     cout << "[4] Quit" << endl;
     cout << "Choice --> ";
     cin >> choice;
+    cout << endl;
     return choice;
 }
 
-int select_goat(list<Goat> trip) {
+int select_goat(list<Goat> &trip) {
     if (trip.empty()) {
         cout << "Nothing selected" << endl;
         return -1;
@@ -90,8 +91,9 @@ int select_goat(list<Goat> trip) {
 
     int choice;
     cin >> choice;
+    cout << endl;
 
-    if (choice < 1 || choice > trip.size()) {
+    if (choice == -1 || choice > static_cast<int>(trip.size())) {
         return -1;
     }
 
@@ -120,7 +122,7 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
     int random_name = rand() % SZ_NAMES;
     int random_color = rand() % SZ_COLORS;
     int random_age = rand() % MAX_AGE;
-    
+
     Goat new_goat(names[random_name], random_age, colors[random_color]);
     trip.push_back(new_goat);
 
@@ -128,7 +130,7 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
         << ", " << new_goat.get_color() << ")" << endl;
 }
 
-void display_trip(list<Goat> trip) {
+void display_trip(list<Goat> &trip) {
     if (trip.empty()) {
         cout << "Empty list" << endl;
         return;
