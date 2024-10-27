@@ -9,7 +9,7 @@ const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
 int select_goat(list<Goat> &trip);
 void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
+void add_goat(list<Goat> &trip, string[], string[]);
 void display_trip(list<Goat> &trip);
 int main_menu();
 
@@ -27,7 +27,7 @@ int main() {
     }
 
     int i = 0;
-    while (fin >> names[i++] && i < SZ_NAMES) {
+    while (fin >> names[i] && i < SZ_NAMES) {
         i++;
     }
     fin.close();
@@ -37,9 +37,8 @@ int main() {
         cerr << "Error2" << endl;
         return 1;
     }
-
     i = 0;
-    while (fin1 >> colors[i++] && i < SZ_COLORS) {
+    while (fin1 >> colors[i] && i < SZ_COLORS) {
         i++;
     }
     fin1.close();
@@ -84,7 +83,7 @@ int main_menu() {
     return choice;
 }
 
-int select_goat(list<Goat> &trip) {
+int select_goat(list<Goat>& trip) {
     if (trip.empty()) {
         cout << "Nothing selected" << endl << endl;
         return -1;
@@ -92,14 +91,13 @@ int select_goat(list<Goat> &trip) {
 
     int num = 1;
     cout << "Select a goat:" << endl;
-    for (const auto &goat : trip) {
-        cout << "[" << num << "]" << goat.get_name() << " (" << goat.get_age()
-            << ", " << goat.get_color() << ")" << endl;
+    for (const auto& goat : trip) {
+        cout << "[" << num << "] " << goat.get_name() << " (" 
+             << goat.get_age() << ", " << goat.get_color() << ")" << endl;
         num++;
     }
 
     int choice;
-    cout << "Enter the number of the goat: ";
     cin >> choice;
     cout << endl;
 
@@ -110,7 +108,7 @@ int select_goat(list<Goat> &trip) {
     return choice;
 }
 
-void delete_goat(list<Goat> &trip) {
+void delete_goat(list<Goat>& trip) {
     if (trip.empty()) {
         cout << "Empty goats" << endl << endl;
         return;
@@ -124,12 +122,12 @@ void delete_goat(list<Goat> &trip) {
 
     auto it = trip.begin();
     advance(it, index - 1);
-    cout << "Deleted: " << it->get_name() << " (" << it->get_age()
-        << ", " << it->get_color() << ")" << endl << endl;
+    cout << "Deleted: " << it->get_name() << " (" << it->get_age() 
+         << ", " << it->get_color() << ")" << endl << endl;
     trip.erase(it);
 }
 
-void add_goat(list<Goat> &trip, string names[], string colors[]) {
+void add_goat(list<Goat>& trip, string names[], string colors[]) {
     int random_name = rand() % SZ_NAMES;
     int random_color = rand() % SZ_COLORS;
     int random_age = rand() % MAX_AGE;
@@ -137,20 +135,21 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
     Goat new_goat(names[random_name], random_age, colors[random_color]);
     trip.push_back(new_goat);
 
-    cout << "Added: " << new_goat.get_name() << " (" << new_goat.get_age()
-        << ", " << new_goat.get_color() << ")" << endl;
+    cout << "Added: " << new_goat.get_name() << " (" << new_goat.get_age() 
+         << ", " << new_goat.get_color() << ")" << endl << endl;
 }
 
-void display_trip(list<Goat> &trip) {
+void display_trip(list<Goat>& trip) {
     if (trip.empty()) {
-        cout << "Empty list" << endl;
+        cout << "Empty list" << endl << endl;
         return;
     }
     
     int num = 1;
-    for (const auto &goat : trip) {
-        cout << "[" << num << "] " << goat.get_name() << " ("
-            << goat.get_age() << ", " << goat.get_color() << ")" << endl;
+    for (const auto& goat : trip) {
+        cout << "[" << num << "] " << goat.get_name() << " (" 
+             << goat.get_age() << ", " << goat.get_color() << ")" << endl;
         num++;
     }
+    cout << endl;
 }
