@@ -21,6 +21,11 @@ int main() {
     string colors[SZ_COLORS];
 
     ifstream fin("names.txt");
+    if (!fin) {
+        cerr << "Error" << endl;
+        return 1;
+    }
+
     int i = 0;
     while (fin >> names[i++] && i < SZ_NAMES) {
         i++;
@@ -28,6 +33,11 @@ int main() {
     fin.close();
 
     ifstream fin1("colors.txt");
+    if (!fin1) {
+        cerr << "Error2" << endl;
+        return 1;
+    }
+
     i = 0;
     while (fin1 >> colors[i++] && i < SZ_COLORS) {
         i++;
@@ -63,7 +73,7 @@ int main() {
 
 int main_menu() {
     int choice;
-    cout << "*** GOAT MANAGER 3001 ***" << endl;
+    cout << "\n*** GOAT MANAGER 3001 ***" << endl;
     cout << "[1] Add a goat" << endl;
     cout << "[2] Delete a goat" << endl;
     cout << "[3] List goats" << endl;
@@ -76,7 +86,7 @@ int main_menu() {
 
 int select_goat(list<Goat> &trip) {
     if (trip.empty()) {
-        cout << "Nothing selected" << endl;
+        cout << "Nothing selected" << endl << endl;
         return -1;
     }
 
@@ -102,19 +112,20 @@ int select_goat(list<Goat> &trip) {
 
 void delete_goat(list<Goat> &trip) {
     if (trip.empty()) {
-        cout << "Empty goats" << endl;
+        cout << "Empty goats" << endl << endl;
         return;
     }
 
     int index = select_goat(trip);
     if (index < 0) {
-        cout << "Invalid index" << endl;
+        cout << "Invalid index" << endl << endl;
         return;
     }
 
     auto it = trip.begin();
     advance(it, index - 1);
-    cout << "Deleted: " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
+    cout << "Deleted: " << it->get_name() << " (" << it->get_age()
+        << ", " << it->get_color() << ")" << endl << endl;
     trip.erase(it);
 }
 
