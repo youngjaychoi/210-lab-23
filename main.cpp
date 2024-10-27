@@ -62,8 +62,17 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 
     Goat new_goat(names[random_name], random_age, colors[random_color]);
     trip.push_back(new_goat);
+
+    cout << 
 }
 
 void display_trip(list<Goat> trip) {
-
+    if (trip.empty()) {
+        cout << "Empty list" << endl;
+        return;
+    }
+    
+    for (const auto &goat : trip) {
+        cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")" << endl;
+    }
 }
