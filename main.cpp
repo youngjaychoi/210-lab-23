@@ -36,10 +36,29 @@ int main() {
 }
 
 int main_menu() {
+    char choice;
     cout << "*** GOAT MANAGER 3001 ***" << endl;
     cout << "[1] Add a goat" << endl;
     cout << "[2] Delete a goat" << endl;
     cout << "[3] List goats" << endl;
     cout << "[4] Quit" << endl;
     cout << "Choice --> ";
+    cin >> choice;
+    return choice;
+}
+
+int select_goat(list<Goat> trip) {
+
+}
+
+void delete_goat(list<Goat> &trip) {
+
+}
+
+void add_goat(list<Goat> &trip, string [], string []) {
+
+}
+
+void display_trip(list<Goat> trip) {
+
 }
